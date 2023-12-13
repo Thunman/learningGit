@@ -6,14 +6,18 @@ class Deck{
 
     generateDecks(amountOfDecks){
         const suits = ["Hearts", "Spades", "Diamonds", "Clubs"];
-        const values = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
+        const values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
 
         const orderedDecks = [];
 
         for(let i = 0; i < amountOfDecks; i ++){
             for(let suit of suits){
                 for(let value of values){
-                    orderedDecks.push(`${value} of ${suit}`);
+                    const card = {
+                        value: value,
+                        suit: suit
+                    }
+                    orderedDecks.push(card);
                 }
             }
         }
@@ -43,6 +47,7 @@ class Deck{
         }
     }
 }
+
 
 /*      TODO
     make a method to get a specific card or cards
