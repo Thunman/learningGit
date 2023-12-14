@@ -1,28 +1,26 @@
-
 class Deck{
-    constructor(amountOfDecks = 1, customSuits = null, customValues = null){
-        this.decks = this.generateDecks(amountOfDecks, customSuits, customValues);
+    constructor(deckObj){
+        this.shuffledDeck = this.generateDecks(deckObj);
     }
 
-    generateDecks(amountOfDecks, customSuits, customValues){
-        const suits = customSuits || ["Hearts", "Spades", "Diamonds", "Clubs"];
-        const values = customValues || ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
+    generateDecks(deckObj){
+        
+        const shuffledDeck = [];
 
-        const orderedDecks = [];
+        for (let suit in deckObj) {
+            const values = deckObj[suit];
 
-        for(let i = 0; i < amountOfDecks; i ++){
-            for(let suit of suits){
-                for(let value of values){
-                    const card = {
-                        value: value,
-                        suit: suit
-                    }
-                    orderedDecks.push(card);
-                }
+            for (let value in values) {
+                const card = {
+                    value: values[value], 
+                    suit: suit
+                };
+                shuffledDeck.push(card);
             }
         }
-        this.#shuffle(orderedDecks);
-        return orderedDecks;
+        
+        this.#shuffle(shuffledDeck);
+        return shuffledDeck;
     }
     get remainingCards(){
         return this.decks.length;
@@ -61,3 +59,5 @@ class Deck{
         return cards;
     }
 }
+
+
