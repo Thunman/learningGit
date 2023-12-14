@@ -31,7 +31,7 @@ class Deck{
     //Deal an amount of cards or just one if amount not specified
     deal(numOfCards = 1){
         const cards = [];
-        if(this.decks.length < numOfCards) return `Not enough cards in deck`;
+        if(this.decks.length < numOfCards) console.log(`Not enough cards in deck`);
         else{
             for(let i = 0; i < numOfCards; i ++){
                 cards.push(this.decks.shift());
@@ -50,16 +50,16 @@ class Deck{
         const cards = [];
         const matchingCards = this.decks.filter((card) => card.value === value && card.suit === suit);
 
-        if (matchingCards.length < amount) {
-            console.log(`Not enough cards with value ${value} and suit ${suit} in the deck`);
-            return cards;
-        }
-
-        for (let i = 0; i < amount; i++) {
-            const cardToRemove = this.decks.findIndex((card) => card.value === value && card.suit === suit);
-            const removedCard = this.decks.splice(cardToRemove, 1);
-            cards.push(removedCard);
+        if (matchingCards.length < amount) console.log(`Not enough cards with value ${value} and suit ${suit} in the deck`);
+        else{
+            for (let i = 0; i < amount; i++) {
+                const cardToRemove = this.decks.findIndex((card) => card.value === value && card.suit === suit);
+                const removedCard = this.decks.splice(cardToRemove, 1);
+                cards.push(removedCard);
+            }
         }
         return cards;
     }
 }
+const test = new Deck();
+test.deal(54);
