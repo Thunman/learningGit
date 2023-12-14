@@ -61,5 +61,3 @@ class Deck{
         return cards;
     }
 }
-const test = new Deck();
-test.deal(54);
