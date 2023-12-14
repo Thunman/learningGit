@@ -1,12 +1,12 @@
 
 class Deck{
-    constructor(amountOfDecks = 1, customSuits = null, custumValues = null){
-        this.decks = this.generateDecks(amountOfDecks, customSuits, custumValues);
+    constructor(amountOfDecks = 1, customSuits = null, customValues = null){
+        this.decks = this.generateDecks(amountOfDecks, customSuits, customValues);
     }
 
-    generateDecks(amountOfDecks, customSuits, custumValues){
+    generateDecks(amountOfDecks, customSuits, customValues){
         const suits = customSuits || ["Hearts", "Spades", "Diamonds", "Clubs"];
-        const values = custumValues || ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
+        const values = customValues || ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
 
         const orderedDecks = [];
 
@@ -46,10 +46,21 @@ class Deck{
             [decks[i], decks[j]] = [decks[j], decks[i]];
         }
     }
+    getCards(value, suit, amount = 1){
+        const cards = [];
+        const matchingCards = this.decks.filter((card) => card.value === value && card.suit === suit);
+
+        if (matchingCards.length < amount) {
+            console.log(`Not enough cards with value ${value} and suit ${suit} in the deck`);
+            return cards;
+        }
+
+        for (let i = 0; i < amount; i++) {
+            const cardToRemove = this.decks.findIndex((card) => card.value === value && card.suit === suit);
+            const removedCard = this.decks.splice(cardToRemove, 1)[0];
+            cards.push(removedCard);
+        }
+
+        return cards;
+    }
 }
-
-
-/*      TODO
-    make a method to get a specific card or cards
-
-*/
