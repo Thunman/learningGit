@@ -57,10 +57,9 @@ class Deck{
 
         for (let i = 0; i < amount; i++) {
             const cardToRemove = this.decks.findIndex((card) => card.value === value && card.suit === suit);
-            const removedCard = this.decks.splice(cardToRemove, 1)[0];
+            const removedCard = this.decks.splice(cardToRemove, 1);
             cards.push(removedCard);
         }
-
         return cards;
     }
 }
