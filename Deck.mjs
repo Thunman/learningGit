@@ -23,41 +23,39 @@ class Deck{
         return shuffledDeck;
     }
     get remainingCards(){
-        return this.decks.length;
+        return this.shuffledDeck.length;
     }
 
     //Deal an amount of cards or just one if amount not specified
     deal(numOfCards = 1){
         const cards = [];
-        if(this.decks.length < numOfCards) console.log(`Not enough cards in deck`);
+        if(this.shuffledDeck.length < numOfCards) console.log(`Not enough cards in deck`);
         else{
             for(let i = 0; i < numOfCards; i ++){
-                cards.push(this.decks.shift());
+                cards.push(this.shuffledDeck.shift());
             }
         }
         return cards;
     }
     //Using the Fisher-Yates algorithm to shuffle
-    #shuffle(decks) {
-        for (let i = decks.length - 1; i > 0; i--) {
+    #shuffle(deck) {
+        for (let i = deck.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [decks[i], decks[j]] = [decks[j], decks[i]];
+            [deck[i], deck[j]] = [deck[j], deck[i]];
         }
     }
     getCards(value, suit, amount = 1){
         const cards = [];
-        const matchingCards = this.decks.filter((card) => card.value === value && card.suit === suit);
+        const matchingCards = this.shuffledDeck.filter((card) => card.value === value && card.suit === suit);
 
         if (matchingCards.length < amount) console.log(`Not enough cards with value ${value} and suit ${suit} in the deck`);
         else{
             for (let i = 0; i < amount; i++) {
-                const cardToRemove = this.decks.findIndex((card) => card.value === value && card.suit === suit);
-                const removedCard = this.decks.splice(cardToRemove, 1);
+                const cardToRemove = this.shuffledDeck.findIndex((card) => card.value === value && card.suit === suit);
+                const removedCard = this.shuffledDeck.splice(cardToRemove, 1);
                 cards.push(removedCard);
             }
         }
         return cards;
     }
 }
-
-
