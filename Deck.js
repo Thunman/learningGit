@@ -1,12 +1,12 @@
 
 class Deck{
-    constructor(amountOfDecks){
-        this.decks = this.generateDecks(amountOfDecks);
+    constructor(amountOfDecks = 1, customSuits = null, custumValues = null){
+        this.decks = this.generateDecks(amountOfDecks, customSuits, custumValues);
     }
 
-    generateDecks(amountOfDecks){
-        const suits = ["Hearts", "Spades", "Diamonds", "Clubs"];
-        const values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
+    generateDecks(amountOfDecks, customSuits, custumValues){
+        const suits = customSuits || ["Hearts", "Spades", "Diamonds", "Clubs"];
+        const values = custumValues || ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
 
         const orderedDecks = [];
 
@@ -51,6 +51,5 @@ class Deck{
 
 /*      TODO
     make a method to get a specific card or cards
-
 
 */
