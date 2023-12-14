@@ -140,6 +140,16 @@ const deckOfDragons = {
         7: "Lifeslayer",
         8: "Deathslayer",
         9: "Herald"
+    },
+    "Unaligned Cards": {
+        1: "Oponn",
+        2: "Obelisk",
+        3: "Crown",
+        4: "Sceptre",
+        5: "Orb",
+        6: "Throne",
+        7: "Master of the Deck",
+        8: "Salvation"
     }
 };
 
